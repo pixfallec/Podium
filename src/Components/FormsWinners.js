@@ -6,11 +6,14 @@
 /* eslint-disable no-plusplus */
 import React from 'react';
 import '../App.css';
+import propTypes from 'prop-types';
 
 export default class FormsWinners extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { value: '---' };
+    this.state = {
+      value: '----',
+    };
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -29,13 +32,11 @@ export default class FormsWinners extends React.Component {
     return (
       <form onSubmit={this.handleSubmit}>
         <label htmlFor="temp-id">
-          Pick your favorite flavor:
+          {this.props.categoria}
           <select value={this.state.value} onChange={this.handleChange}>
-            <option value="none">------</option>
-            <option value="grapefruit">Grapefruit</option>
-            <option value="lime">Lime</option>
-            <option value="coconut">Coconut</option>
-            <option value="mango">Mango</option>
+            {this.props.options.map(object => {
+              return <option value={object}>{object}</option>;
+            })}
           </select>
         </label>
         <input type="submit" value="Submit" />
@@ -43,3 +44,9 @@ export default class FormsWinners extends React.Component {
     );
   }
 }
+
+FormsWinners.propTypes = {
+  categoria: propTypes.string.isRequired,
+  // eslint-disable-next-line react/forbid-prop-types
+  options: propTypes.array.isRequired,
+};
