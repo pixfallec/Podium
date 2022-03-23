@@ -19,7 +19,32 @@ export default class SelectCategorias extends React.Component {
 
   render() {
     return (
-      <FormsWinners categoria="hola" options={['gool', 'perro', 'roca']} />
+      <div className="categorias">
+        <FormsWinners
+          categoria="Mejor Estadio"
+          options={['gool', 'perro', 'roca']}
+        />
+        <FormsWinners
+          categoria="Mejor Peluquero"
+          options={['gool', 'perro', 'roca']}
+        />
+        <FormsWinners
+          categoria="Mejor Actor"
+          options={['gool', 'perro', 'roca']}
+        />
+        <FormsWinners
+          categoria="Mejor Bisep"
+          options={['gool', 'perro', 'roca']}
+        />
+        <FormsWinners
+          categoria="Ganadores"
+          options={['gool', 'perro', 'roca']}
+        />
+        <FormsWinners
+          categoria="Intento 5"
+          options={['gool', 'perro', 'roca']}
+        />
+      </div>
     );
   }
 }
