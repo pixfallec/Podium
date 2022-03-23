@@ -96,8 +96,8 @@ export default class Podium extends React.Component {
     return (
       <div className="chart">
         <Bar
-          width="900%"
-          height="400%"
+          // width="400%"
+          // height="300%"
           data={this.state.barChartData}
           options={{
             responsive: true,
@@ -112,6 +112,22 @@ export default class Podium extends React.Component {
             plugins: {
               legend: {
                 display: false,
+              },
+            },
+            maintainAspectRatio: false,
+            scales: {
+              x: {
+                grid: {
+                  display: false,
+                },
+              },
+              y: {
+                grid: {
+                  display: false,
+                },
+                ticks: {
+                  display: false,
+                },
               },
             },
           }}
