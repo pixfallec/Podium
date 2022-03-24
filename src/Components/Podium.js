@@ -6,8 +6,9 @@
 import React from 'react';
 import { Bar } from 'react-chartjs-2';
 import { CategoryScale } from 'chart.js/auto';
-import { onValue } from 'firebase/database';
-import oscarsRef from '../Data/RealTimeDB';
+import { onValue, ref } from 'firebase/database';
+// import oscarsRef from '../Data/RealTimeDB';
+import RealTimeDB from '../Data/RealTimeDB';
 import data from '../Data/registro-oscars-2022.json';
 import state from '../Data/SetData';
 import '../App.css';
@@ -33,20 +34,21 @@ export default class Podium extends React.Component {
   getData(snapshot) {
     const nombres = [];
     const puntos = [];
-    snapshot.forEach(child => {
-      const { key } = child;
-      const value = child.val();
-      if (value !== 'none') {
-        console.log(key, '---------', value);
 
-        data.Oscars.forEach(person => {
-          person.Puntos += Math.floor(Math.random() * 20);
-          // if(person[value] =! 0){
-          //   person.Puntos += 120;
-          //   console.log(person.Puntos);
-          // }
-        });
-      }
+    data.Oscars.forEach(person => {
+      let personPoints = 0;
+      // person.Puntos += Math.floor(Math.random() * 20);
+      snapshot.forEach(child => {
+        const { key } = child;
+        const value = child.val();
+        if (value !== 'none') {
+          if (person[key] === value) {
+            personPoints += 10;
+            console.log(person.Puntos);
+          }
+        }
+      });
+      person.Puntos = personPoints;
     });
 
     data.Oscars.sort((a, b) => {
@@ -66,6 +68,7 @@ export default class Podium extends React.Component {
   }
 
   update() {
+    const oscarsRef = ref(RealTimeDB, 'Oscars');
     onValue(oscarsRef, snapshot => {
       // winners.forEach(el => {
       //   console.log(el);

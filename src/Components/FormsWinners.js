@@ -7,6 +7,8 @@
 import React from 'react';
 import '../App.css';
 import propTypes from 'prop-types';
+import { ref, set } from 'firebase/database';
+import RealTimeDB from '../Data/RealTimeDB';
 
 export default class FormsWinners extends React.Component {
   constructor(props) {
@@ -23,24 +25,33 @@ export default class FormsWinners extends React.Component {
     this.setState({ value: event.target.value });
   }
 
+  // update() {
+  //   const categoriaRef = ref();
+  // }
+
   handleSubmit(event) {
-    alert(`Your favorite flavor is: ${this.state.value}`);
+    // eslint-disable-next-line no-alert
+    alert(`${this.props.categoria}: ${this.state.value}`);
+    const categoriaRef = ref(RealTimeDB, `Oscars/${this.props.categoria}`);
+    set(categoriaRef, this.state.value);
     event.preventDefault();
   }
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit}>
-        <label htmlFor="temp-id">
-          {this.props.categoria}
-          <select value={this.state.value} onChange={this.handleChange}>
-            {this.props.options.map(object => {
-              return <option value={object}>{object}</option>;
-            })}
-          </select>
-        </label>
-        <input type="submit" value="Submit" />
-      </form>
+      <div className="formWinner">
+        <form onSubmit={this.handleSubmit}>
+          <label htmlFor="temp-id">
+            <div className="label">{this.props.categoria}</div>
+            <select value={this.state.value} onChange={this.handleChange}>
+              {this.props.options.map(object => {
+                return <option value={object}>{object}</option>;
+              })}
+            </select>
+          </label>
+          <input type="submit" value="Submit" />
+        </form>
+      </div>
     );
   }
 }

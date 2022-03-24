@@ -36,3 +36,13 @@
   /* font-size: calc(10px + 2vmin); */
   color: white;
 }
+
+.formWinner {
+  /* width: 80vw; */
+  flex-direction: column;
+  padding: 5px;
+}
+
+.label {
+  width: 20vw;
+}

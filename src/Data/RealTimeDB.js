@@ -1,5 +1,5 @@
 import { initializeApp } from 'firebase/app';
-import { ref, getDatabase } from 'firebase/database';
+import { getDatabase } from 'firebase/database';
 
 const firebaseConfig = {
   apiKey: 'AIzaSyCJhorOpiL1sxkNU2AXmM0JzmnFaVN02ys',
@@ -15,6 +15,6 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const RealTimeDB = getDatabase(app);
 
-const oscarsRef = ref(RealTimeDB, 'Oscars');
+// const oscarsRef = ref(RealTimeDB, 'Oscars');
 
-export default oscarsRef;
+export default RealTimeDB;
