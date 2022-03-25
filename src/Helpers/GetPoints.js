@@ -6,7 +6,7 @@ const nominations = {
 };
 
 /**
- * @param {BigInteger} nomination
+ * @param {String} nomination
  */
 export default function getPoints(nomination) {
   if (nominations[nomination] === !null) {

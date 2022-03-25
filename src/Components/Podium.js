@@ -9,7 +9,7 @@ import { CategoryScale } from 'chart.js/auto';
 import { onValue, ref } from 'firebase/database';
 // import oscarsRef from '../Data/RealTimeDB';
 import RealTimeDB from '../Data/RealTimeDB';
-import data from '../Data/registro-oscars-2022.json';
+import data from '../Data/oscars-contestants.json';
 import state from '../Data/SetData';
 import '../App.css';
 
@@ -56,11 +56,7 @@ export default class Podium extends React.Component {
     });
 
     for (let i = 0; i < 5; i++) {
-      nombres.push(
-        data.Oscars[i][
-          'Ahora vamos a registrarte.\r\nPor favor, ingresa tu nombre y apellido'
-        ],
-      );
+      nombres.push(data.Oscars[i]['Ingresa tu correo electrónico de la USFQ']);
       puntos.push(data.Oscars[i].Puntos);
     }
 

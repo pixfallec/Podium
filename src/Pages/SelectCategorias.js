@@ -10,14 +10,18 @@ import propTypes from 'prop-types';
 import { onValue, ref, set } from 'firebase/database';
 import FormsWinners from '../Components/FormsWinners';
 import RealTimeDB from '../Data/RealTimeDB';
+import fields from '../Data/Fields.json';
 
 export default class SelectCategorias extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       value: '----',
-      categoria: '',
+      keys: Object.keys(fields),
+      values: Object.values(fields),
+      objects: [],
     };
+    this.update = this.update.bind(this);
   }
 
   componentDidMount() {
@@ -25,40 +29,24 @@ export default class SelectCategorias extends React.Component {
   }
 
   update() {
-    // onValue(oscarsRef, snapshot => {
-    //   const { nombres, puntos } = this.getData(snapshot);
-    //   // console.log(winners);
-    // });
+    const objetos = [];
+    const keys = Object.keys(fields);
+    const values = Object.values(fields);
+    for (let i = 0; i < keys.length; i++) {
+      console.log(keys[i], values[i]);
+      objetos.push(<FormsWinners categoria={keys[i]} options={values[i]} />);
+    }
+    // console.log(objectos);
+    this.setState({ objects: objetos });
   }
 
+  // <div className="col">
+  // <FormsWinners
+  //   categoria="Película Extrangera"
+  //   options={['----', 'gool', 'perro', 'roca']}
+  // />
+
   render() {
-    return (
-      <div className="categorias">
-        <FormsWinners
-          categoria="Actor de reparto"
-          options={['----', 'gool', 'perro', 'roca']}
-        />
-        <FormsWinners
-          categoria="Mejor Peluquero"
-          options={['----', 'gool', 'perro', 'roca']}
-        />
-        <FormsWinners
-          categoria="Mejor Actor"
-          options={['----', 'gool', 'perro', 'roca']}
-        />
-        <FormsWinners
-          categoria="Mejor Bisep"
-          options={['----', 'gool', 'perro', 'roca']}
-        />
-        <FormsWinners
-          categoria="Ganadores"
-          options={['----', 'gool', 'perro', 'roca']}
-        />
-        <FormsWinners
-          categoria="Intento 5"
-          options={['----', 'gool', 'perro', 'roca']}
-        />
-      </div>
-    );
+    return <div className="categorias">{this.state.objects}</div>;
   }
 }
