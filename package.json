@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "chart.js": "^3.7.1",
+    "chartjs-plugin-datalabels": "^2.0.0",
     "firebase": "^9.6.9",
     "prop-types": "^15.8.1",
     "react": "^16.12.0",

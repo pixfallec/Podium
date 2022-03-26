@@ -6,6 +6,8 @@
 import React from 'react';
 import Podium from '../Components/Podium';
 import '../App.css';
+import Header from '../Images/header.png';
+import Footer from '../Images/footer.png';
 
 export default class MainChart extends React.Component {
   constructor() {
@@ -30,7 +32,13 @@ export default class MainChart extends React.Component {
   render() {
     return (
       <div className="App-header">
+        <div className="header">
+          <img src={Header} alt="Header" />
+        </div>
         <Podium />
+        <div className="footer">
+          <img src={Footer} alt="Footer" />
+        </div>
       </div>
     );
   }

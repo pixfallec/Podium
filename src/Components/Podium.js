@@ -5,13 +5,15 @@
 /* eslint-disable no-plusplus */
 import React from 'react';
 import { Bar } from 'react-chartjs-2';
-import { CategoryScale } from 'chart.js/auto';
+import { Chart } from 'chart.js/auto';
 import { onValue, ref } from 'firebase/database';
 // import oscarsRef from '../Data/RealTimeDB';
+import ChartDataLabels from 'chartjs-plugin-datalabels';
 import RealTimeDB from '../Data/RealTimeDB';
 import data from '../Data/oscars-contestants.json';
 import state from '../Data/SetData';
 import '../App.css';
+import getPoints from '../Helpers/GetPoints';
 
 export default class Podium extends React.Component {
   constructor() {
@@ -25,6 +27,7 @@ export default class Podium extends React.Component {
   }
 
   componentDidMount() {
+    // Chart.register(ChartDataLabels);
     this.update();
   }
 
@@ -43,8 +46,9 @@ export default class Podium extends React.Component {
         const value = child.val();
         if (value !== 'none') {
           if (person[key] === value) {
-            personPoints += 10;
-            console.log(person.Puntos);
+            // console.log(getPoints(key));
+            personPoints += getPoints(key);
+            // console.log(person.Puntos);
           }
         }
       });
@@ -55,8 +59,12 @@ export default class Podium extends React.Component {
       return -a.Puntos + b.Puntos;
     });
 
-    for (let i = 0; i < 5; i++) {
-      nombres.push(data.Oscars[i]['Ingresa tu correo electrónico de la USFQ']);
+    for (let i = 0; i < 10; i++) {
+      nombres.push(
+        data.Oscars[i]['Ingresa tu correo electrónico de la USFQ'].split(
+          '@',
+        )[0],
+      );
       puntos.push(data.Oscars[i].Puntos);
     }
 
@@ -78,11 +86,11 @@ export default class Podium extends React.Component {
           datasets: [
             {
               label: 'Puntos',
-              backgroundColor: 'rgba(255,99,132,0.2)',
-              borderColor: 'rgba(255,99,132,1)',
+              backgroundColor: 'rgba(181, 145, 50, 0.1)',
+              borderColor: 'rgba(181, 145, 50, 1)',
               borderWidth: 1,
-              hoverBackgroundColor: 'rgba(255,99,132,0.4)',
-              hoverBorderColor: 'rgba(255,99,132,1)',
+              hoverBackgroundColor: 'rgba(238, 238, 238, 0.1)',
+              hoverBorderColor: 'rgba(238, 238, 238, 1)',
               data: puntos,
             },
           ],
@@ -106,11 +114,18 @@ export default class Podium extends React.Component {
               fontSize: 20,
             },
             legend: {
-              display: false,
+              display: true,
             },
             plugins: {
               legend: {
                 display: false,
+              },
+              datalabels: {
+                display: true,
+                color: 'white',
+                anchor: 'end',
+                offset: -20,
+                align: 'start',
               },
             },
             maintainAspectRatio: false,
@@ -118,14 +133,21 @@ export default class Podium extends React.Component {
               x: {
                 grid: {
                   display: false,
+                  drawBorder: false,
+                },
+                ticks: {
+                  display: true,
+                  color: 'white',
                 },
               },
               y: {
                 grid: {
                   display: false,
+                  drawBorder: false,
                 },
                 ticks: {
-                  display: false,
+                  display: true,
+                  color: 'white',
                 },
               },
             },
