@@ -49,7 +49,7 @@ export default class MainChart extends React.Component {
             <a
               href="https://github.com/pixfallec"
               target="_blank"
-              rel="noreferrer"
+              rel="noreferrer noopener"
             >
               Andrés Parra
             </a>
@@ -57,7 +57,7 @@ export default class MainChart extends React.Component {
             <a
               href="https://www.instagram.com/joel_del_castillo/"
               target="_blank"
-              rel="noreferrer"
+              rel="noreferrer noopener"
             >
               Joel del Castillo
             </a>
