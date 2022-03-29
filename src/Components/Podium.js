@@ -59,6 +59,8 @@ export default class Podium extends React.Component {
       return -a.Puntos + b.Puntos;
     });
 
+    console.log(data.Oscars);
+
     for (let i = 0; i < 10; i++) {
       nombres.push(
         data.Oscars[i]['Ingresa tu correo electrónico de la USFQ'].split(

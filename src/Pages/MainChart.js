@@ -31,15 +31,39 @@ export default class MainChart extends React.Component {
 
   render() {
     return (
-      <div className="App-header">
-        <div className="header">
-          <img src={Header} alt="Header" />
+      <>
+        <div className="App-header">
+          <div className="header">
+            <img src={Header} alt="Header" />
+          </div>
+          <Podium />
+          <div className="footer">
+            <img src={Footer} alt="Footer" />
+          </div>
         </div>
-        <Podium />
-        <div className="footer">
-          <img src={Footer} alt="Footer" />
-        </div>
-      </div>
+
+        <footer>
+          <p className="text-center">
+            {' '}
+            WEB |
+            <a
+              href="https://github.com/pixfallec"
+              target="_blank"
+              rel="noreferrer"
+            >
+              Andrés Parra
+            </a>
+            |
+            <a
+              href="https://www.instagram.com/joel_del_castillo/"
+              target="_blank"
+              rel="noreferrer"
+            >
+              Joel del Castillo
+            </a>
+          </p>
+        </footer>
+      </>
     );
   }
 }
