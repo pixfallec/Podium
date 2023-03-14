@@ -61,7 +61,7 @@ export default class Podium extends React.Component {
 
     //console.log(data.Oscars);
 
-    for (let i = 0; i < 25; i++) {
+    for (let i = 0; i < 141; i++) {
       nombres.push(
         data.Oscars[i]['Ingresa tu correo electrónico de la USFQ'].split(
           '@',
