@@ -59,7 +59,7 @@ export default class Podium extends React.Component {
       return -a.Puntos + b.Puntos;
     });
 
-    console.log(data.Oscars);
+    //console.log(data.Oscars);
 
     for (let i = 0; i < 25; i++) {
       nombres.push(
@@ -68,6 +68,7 @@ export default class Podium extends React.Component {
         )[0],
       );
       puntos.push(data.Oscars[i].Puntos);
+      console.log(data.Oscars[i]['Ingresa tu correo electrónico de la USFQ'] + ' - ' + data.Oscars[i].Puntos);
     }
 
     return { nombres, puntos };
